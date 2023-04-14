@@ -116,6 +116,4 @@ GET /api/v1/follow/
 GET /api/v1/posts/?limit=5&offset=0
 ```
 
-### Автор
-:arrow_down:
-### **[Анастасия](https://github.com/PUpi-83)**
+### Автор :arrow_right: ### [Анастасия](https://github.com/PUpi-83)
