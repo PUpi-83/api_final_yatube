@@ -118,4 +118,4 @@ GET /api/v1/posts/?limit=5&offset=0
 
 ### Автор
 :arrow_down:
-#### **[Анастасия](https://github.com/PUpi-83)**
+### **[Анастасия](https://github.com/PUpi-83)**
