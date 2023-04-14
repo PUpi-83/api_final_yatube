@@ -67,7 +67,7 @@ GET api/v1/{post_id}/comments/{id}/ - получение комментария 
 POST /api/v1/jwt/create/
 ```
 *Придумываем логин и пароль, передаем в тело запроса:*
-```json
+```python
 {
 "username": "string",
 "password": "string"
