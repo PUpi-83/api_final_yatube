@@ -115,3 +115,6 @@ GET /api/v1/follow/
 ```python
 GET /api/v1/posts/?limit=5&offset=0
 ```
+
+###### Автор
+[Анастасия](https://github.com/PUpi-83)
