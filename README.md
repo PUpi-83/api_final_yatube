@@ -1,4 +1,4 @@
-# API для Yatube 
+# API для Yatube :milky_way:
 *Yatube - это проект социальной сети для публикации и обмена постами, фотографиями и комментариями. Проект реализован в виде веб-приложения с использованием Django и Django REST framework для создания REST API.*
 
 ## API проекта Yatube имеет следующие функции:
@@ -116,5 +116,5 @@ GET /api/v1/follow/
 GET /api/v1/posts/?limit=5&offset=0
 ```
 
-###### Автор
+### Автор
 [Анастасия](https://github.com/PUpi-83) :butterfly:
