@@ -52,7 +52,7 @@ python manage.py runserver
 
 ## Примеры запросов
 #### Для неавторизованных пользователей
-```
+```json
 GET api/v1/posts/ - получение список всех публикаций
 GET api/v1/posts/{id}/ - получение публикации по id.
 GET api/v1/groups/ - получение списка доступных сообществ
@@ -67,7 +67,7 @@ GET api/v1/{post_id}/comments/{id}/ - получение комментария 
 POST /api/v1/jwt/create/
 ```
 *Придумываем логин и пароль, передаем в тело запроса:*
-```
+```json
 {
 "username": "string",
 "password": "string"
