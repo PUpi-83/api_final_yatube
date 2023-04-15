@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404
-
-from rest_framework import viewsets, mixins, filters, permissions, serializers
+from rest_framework import viewsets, mixins, filters, permissions
 from rest_framework.pagination import LimitOffsetPagination
 
-from posts.models import Post, Group, Follow
+from posts.models import Post, Group
 from .permissions import IsAuthorOrReadOnly
-from .serializers import (CommentSerializer, GroupSerializer,
-                          PostSerializer, FollowSerializer)
+from .serializers import (
+    CommentSerializer, FollowSerializer,
+    GroupSerializer, PostSerializer,
+)
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -40,9 +41,11 @@ class CommentViewSet(viewsets.ModelViewSet):
         return self.get_post().comments
 
 
-class FollowViewSet(mixins.CreateModelMixin,
-                    mixins.ListModelMixin,
-                    viewsets.GenericViewSet):
+class FollowViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
     pagination_class = LimitOffsetPagination
@@ -50,17 +53,8 @@ class FollowViewSet(mixins.CreateModelMixin,
     search_fields = ('user__username', 'following__username')
 
     def get_queryset(self):
-        if self.request.user.is_anonymous:
-            return Follow.objects.none()
-        return Follow.objects.filter(user=self.request.user)
+        return self.request.user.followers.all()
 
     def perform_create(self, serializer):
-        user = self.request.user
-        following = serializer.validated_data.get('following')
-        if Follow.objects.filter(user=user, following=following).exists():
-            raise serializers.ValidationError('Вы уже подписаны '
-                                              'на указанного пользователя.')
-        if user == following:
-            raise serializers.ValidationError('Вы не можете оформить подписку '
-                                              'на самого себя.')
-        serializer.save(user=user)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=self.request.user)
